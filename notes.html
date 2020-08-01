@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> My Editable Content</title>
+    <style media="screen">
+      .container{
+        color: blue;
+        border: brown;
+        padding: 10px;
+      }
+      .container div{
+        padding:10px;
+        margin: 5px;
+        border: 2px solid red;
+      }
+      .container div:active{
+        padding:10px;
+        margin: 5px;
+        border: 2px solid orange;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>My Notebook - Start Writing</h1>
+    <div contenteditable="true" class="container">
+      Welcome. Start Writing Notes!
+    </div>
+  </body>
+
+
+  <script type="text/javascript">
+      var notes = document.querySelector('.container');
+
+      notes.addEventListener('load', ()=>{
+        let all_notes = localStorage.getItem("mynotes")
+        notes.textContent = all_notes;
+      })
+
+      notes.addEventListener('keyup', myfunction);
+      function myfunction(){
+        //this function runs on each keypress
+        //on each keypress save to localstorage
+        localStorage.setItem('mynotes', notes.textContent)
+      }
+
+  </script>
+</html>
